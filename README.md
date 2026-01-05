@@ -80,7 +80,49 @@ If you really need to bypass hooks once:
 git commit -m "whatever" --no-verify
 ```
 
+## Prettier on save (VS Code)
+To make Prettier run automatically on save in VS Code, add this to your user or workspace settings (.vscode/settings.json):
 
-***
+
+```json
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
+}
+```
+
+This ensures that when you save a file, Prettier is used as the formatter and your code respects the project’s Prettier configuration.
+
+
+## VS Code extensions
+
+To get the same DX as the template author, it is recommended to install these VS Code extensions:
+
+- **EditorConfig for VS Code**
+  Keeps indentation, charset, line endings and other basic settings consistent with the `.editorconfig` file.
+  Marketplace: https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig
+
+- **Prettier - Code formatter**
+  Integrates Prettier into VS Code so you can format code manually and on save, using the project’s Prettier configuration.
+  Marketplace: https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode
+
+- **ESLint**
+  Runs ESLint inside VS Code, shows errors and warnings inline, and can auto-fix problems with `Quick Fix` or on save.
+  Marketplace: https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint
+
+
+---
 
 If you want, share your current `eslint.config.ts` and `.lintstagedrc.json` contents and the README can include a small “How auto-fix works on commit” section tailored exactly to your setup.
