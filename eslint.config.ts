@@ -1,18 +1,26 @@
-import stylistic from "@stylistic/eslint-plugin";
-import pluginReact from "eslint-plugin-react";
-import { defineConfig } from "eslint/config";
-import globals from "globals";
-import tseslint from "typescript-eslint";
+import js from '@eslint/js';
+import stylistic from '@stylistic/eslint-plugin';
+import pluginPrettier from 'eslint-plugin-prettier';
+import pluginReact from 'eslint-plugin-react';
+import { defineConfig } from 'eslint/config';
+import globals from 'globals';
+import tseslint from 'typescript-eslint';
 
 export default defineConfig([
+    js.configs.recommended,
     {
-        files: ["**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}"],
-        plugins: { "@stylistic": stylistic },
-        extends: ["js/recommended"],
+        files: ['**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
+        plugins: { '@stylistic': stylistic, prettier: pluginPrettier },
         languageOptions: { globals: globals.browser },
         rules: {
-            "@stylistic/indent": ["error", 2],
-            "prefer-double": "warn",
+            'prettier/prettier': 'error',
+            'react/react-in-jsx-scope': 'off',
+            'react/jsx-uses-react': 'off',
+        },
+        settings: {
+            react: {
+                version: 'detect',
+            },
         },
     },
     tseslint.configs.recommended,
